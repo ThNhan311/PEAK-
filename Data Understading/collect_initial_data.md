@@ -1,16 +1,25 @@
 **Collect Initial Data – Thu thập dữ liệu ban đầu**
 
-* **Nguồn dữ liệu:** The New York Times – [GitHub Repository](https://github.com/nytimes/covid-19-data). Dữ liệu được NYT tổng hợp từ chính quyền và cơ quan y tế Hoa Kỳ, có độ tin cậy tương đối cao nhưng vẫn chịu ảnh hưởng của độ trễ báo cáo và khác biệt phương pháp thống kê.
-* **Phương thức nhóm thu thập:** Clone repository hoặc tải trực tiếp các file `.csv`.
-* **Phương thức NYT thu thập:** Theo dõi họp báo, tổng hợp báo cáo chính thức, xác minh với cơ quan chức năng và điều chỉnh khi có thông tin mới.
-* **Tần suất cập nhật:** Trước đây cập nhật hằng ngày; NYT **ngừng cập nhật từ ngày 24/03/2023**, repository hiện phục vụ lưu trữ. [Nguồn: README của NYT](https://github.com/nytimes/covid-19-data#readme).
+**1. Nguồn gốc và độ tin cậy**
 
-**Bảng danh sách tập dữ liệu sử dụng:**
+Bộ dữ liệu NYT COVID-19 do **The New York Times** tổng hợp từ báo cáo của chính quyền và cơ quan y tế tại Hoa Kỳ. Nguồn chính thức và phương pháp công khai giúp dữ liệu có độ tin cậy tương đối cao; tuy nhiên, vẫn có hạn chế do thiếu xét nghiệm, chậm báo cáo và khác biệt cách thống kê. [Nguồn: NYT](https://github.com/nytimes/covid-19-data#methodology-and-definitions).
 
-| Tên file                                                                                | Định dạng | Kích thước (ước tính) | Mô tả nội dung chính                                                 |
-| :-------------------------------------------------------------------------------------- | :-------: | --------------------: | :------------------------------------------------------------------- |
-| [us.csv](https://github.com/nytimes/covid-19-data/blob/master/us.csv)                   |    CSV    |                 30 KB | Số ca mắc và tử vong lũy kế theo ngày trên toàn nước Mỹ              |
-| [us-states.csv](https://github.com/nytimes/covid-19-data/blob/master/us-states.csv)     |    CSV    |               2,11 MB | Số ca mắc và tử vong lũy kế theo ngày tại từng bang và vùng lãnh thổ |
-| [us-counties.csv](https://github.com/nytimes/covid-19-data/blob/master/us-counties.csv) |    CSV    |               99,9 MB | Dữ liệu lũy kế cấp quận/hạt trong file tổng hợp cũ                   |
+**2. Các file dữ liệu chính**
 
-**Lưu ý:** Để phân tích đầy đủ dữ liệu cấp hạt, cần sử dụng các file `us-counties-2020.csv` đến `us-counties-2023.csv`, do NYT đã chia dữ liệu theo năm khi dung lượng tăng lớn. [Nguồn: mô tả dữ liệu](https://github.com/nytimes/covid-19-data#historical-data).
+Dữ liệu CSV ghi nhận số ca mắc và tử vong **lũy kế theo ngày**.
+
+| File                                                                                              | Phạm vi                                 | Dung lượng xấp xỉ trên GitHub |
+| ------------------------------------------------------------------------------------------------- | --------------------------------------- | ----------------------------: |
+| [us.csv](https://github.com/nytimes/covid-19-data/blob/master/us.csv)                             | Toàn Hoa Kỳ                             |                         30 KB |
+| [us-states.csv](https://github.com/nytimes/covid-19-data/blob/master/us-states.csv)               | Bang và vùng lãnh thổ                   |                       2,11 MB |
+| [us-counties.csv](https://github.com/nytimes/covid-19-data/blob/master/us-counties.csv)           | Cấp hạt, file tổng hợp cũ               |                       99,9 MB |
+| [us-counties-2020.csv](https://github.com/nytimes/covid-19-data/blob/master/us-counties-2020.csv) | Cấp hạt năm 2020                        |                       34,2 MB |
+| [us-counties-2021.csv](https://github.com/nytimes/covid-19-data/blob/master/us-counties-2021.csv) | Cấp hạt năm 2021                        |                         48 MB |
+| [us-counties-2022.csv](https://github.com/nytimes/covid-19-data/blob/master/us-counties-2022.csv) | Cấp hạt năm 2022                        |                       48,8 MB |
+| [us-counties-2023.csv](https://github.com/nytimes/covid-19-data/blob/master/us-counties-2023.csv) | Cấp hạt năm 2023 đến khi ngừng cập nhật |                         11 MB |
+
+Do dung lượng lớn, dữ liệu cấp hạt được chia theo năm; nên sử dụng các file này khi thu thập toàn bộ giai đoạn. [Nguồn: mô tả dữ liệu](https://github.com/nytimes/covid-19-data#historical-data).
+
+**3. Tần suất cập nhật và phương thức thu thập**
+
+Trước đây, dữ liệu lịch sử được tổng hợp hằng ngày; thư mục `live/` cập nhật trong ngày. Phóng viên NYT theo dõi họp báo, phân tích báo cáo và xác minh với cơ quan chức năng, đồng thời sửa số liệu khi có thông tin mới. **Từ ngày 24/03/2023, NYT ngừng cập nhật ca mắc và tử vong trong repository**, hiện giữ lại để lưu trữ. [Nguồn: README của NYT](https://github.com/nytimes/covid-19-data#readme).
