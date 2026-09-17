@@ -1,8 +1,14 @@
 import pandas as pd
+from pathlib import Path
+import textwrap
 
 # 1. DOC DU LIEU
+
+ROOT = Path(__file__).resolve().parent.parent
+file_path = ROOT / "data" / "raw" / "us-counties.csv"
+
 df = pd.read_csv(
-    "us-counties.csv",
+    file_path,
     dtype={
         "state": "string",
         "county": "string",
@@ -225,8 +231,26 @@ quality_plan = pd.DataFrame([
     }
 ])
 
-print("\n=== BANG TONG HOP CHAT LUONG DU LIEU ===")
-print(quality_plan.to_string(index=False))
+print("\n" + "=" * 80)
+print("BANG TONG HOP CHAT LUONG DU LIEU".center(80))
+print("=" * 80)
+
+for stt, (_, row) in enumerate(quality_plan.iterrows(), start=1):
+    print(f"\n{stt}. {row['Van de']}")
+    print(f"   So dong: {int(row['So dong']):,}")
+
+    for label, column in [
+        ("Ke hoach xu ly", "Ke hoach xu ly"),
+        ("Lien he Data Viz", "Lien he Data Viz")
+    ]:
+        print(textwrap.fill(
+            f"{label}: {row[column]}",
+            width=80,
+            initial_indent="   ",
+            subsequent_indent="      "
+        ))
+
+    print("-" * 80)
 
 # So dong giua cac van de co the chong lap, khong cong thanh tong loi.
 # Bang tren chi kiem tra, chua tu dong sua du lieu goc.

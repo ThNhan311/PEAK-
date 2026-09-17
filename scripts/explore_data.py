@@ -1,9 +1,17 @@
+from pathlib import Path
 import pandas as pd
 
 # Doc du lieu, giu so 0 o dau ma FIPS
+
+ROOT = Path(__file__).resolve().parent.parent
+file_path = ROOT / "data" / "raw" / "us-states.csv"
+
 df = pd.read_csv(
-    "us-states.csv",
-    dtype={"state": "string", "fips": "string"},
+    file_path,
+    dtype={
+        "state": "string",
+        "fips": "string"
+    },
     parse_dates=["date"]
 )
 
