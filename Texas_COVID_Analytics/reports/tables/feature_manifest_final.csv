@@ -1,0 +1,32 @@
+column,role,use_in_model,note
+date,time_key,False,Dùng để temporal split
+county,categorical_identifier,optional,OneHotEncoder phải fit trên train nếu sử dụng
+fips,identifier,False,Không coi FIPS là biến số liên tục
+current_new_cases,numeric_feature,True,Past/current-known feature
+current_new_deaths,numeric_feature,True,Past/current-known feature
+cases_lag_1,numeric_feature,True,Past/current-known feature
+cases_lag_2,numeric_feature,True,Past/current-known feature
+cases_lag_3,numeric_feature,True,Past/current-known feature
+cases_lag_7,numeric_feature,True,Past/current-known feature
+cases_lag_14,numeric_feature,True,Past/current-known feature
+deaths_lag_1,numeric_feature,True,Past/current-known feature
+deaths_lag_7,numeric_feature,True,Past/current-known feature
+deaths_lag_14,numeric_feature,True,Past/current-known feature
+cases_roll_mean_7,numeric_feature,True,Past/current-known feature
+cases_roll_std_7,numeric_feature,True,Past/current-known feature
+cases_roll_mean_14,numeric_feature,True,Past/current-known feature
+cases_roll_std_14,numeric_feature,True,Past/current-known feature
+deaths_roll_mean_7,numeric_feature,True,Past/current-known feature
+deaths_roll_mean_14,numeric_feature,True,Past/current-known feature
+cases_trend_7,numeric_feature,True,Past/current-known feature
+month,numeric_feature,True,Past/current-known feature
+day_of_week,numeric_feature,True,Past/current-known feature
+week_of_year,numeric_feature,True,Past/current-known feature
+quarter,numeric_feature,True,Past/current-known feature
+is_weekend,numeric_feature,True,Past/current-known feature
+month_sin,numeric_feature,True,Past/current-known feature
+month_cos,numeric_feature,True,Past/current-known feature
+dow_sin,numeric_feature,True,Past/current-known feature
+dow_cos,numeric_feature,True,Past/current-known feature
+days_since_start,numeric_feature,True,Past/current-known feature
+target_next_7d_cases,target,False,Tổng ca mới 7 ngày tương lai

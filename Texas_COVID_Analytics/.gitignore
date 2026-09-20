@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Raw and large generated data
+data/raw/*.csv
+data/processed/*.csv
+data/processed/*.txt
+
+# Trained model binaries
+models/*.joblib
+models/*.pkl
+models/model_feature_config.json
+
+# Temporary files
+*.zip
+.ipynb_checkpoints/
+
+# Keep folders
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!models/.gitkeep

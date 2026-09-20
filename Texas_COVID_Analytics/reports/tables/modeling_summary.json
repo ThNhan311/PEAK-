@@ -1,0 +1,237 @@
+{
+  "primary_metric": "MAE",
+  "validation_winner": {
+    "Model": "Naive 7-day persistence",
+    "Window": "N/A",
+    "Hyperparameters": "past_7d_sum",
+    "MAE": 28.421840712533886,
+    "RMSE": 112.19096360422394,
+    "R2": 0.8864943712529929,
+    "Peak_MAE": 193.35805626598466,
+    "Peak_Threshold": 153.0,
+    "NegPredPct_before_clip": 0.0,
+    "MAE_vs_Naive_pct": 0.0
+  },
+  "best_validation_by_algorithm": [
+    {
+      "Model": "Naive 7-day persistence",
+      "Window": "N/A",
+      "Hyperparameters": "past_7d_sum",
+      "MAE": 28.421840712533886,
+      "RMSE": 112.19096360422394,
+      "R2": 0.8864943712529929,
+      "Peak_MAE": 193.35805626598466,
+      "Peak_Threshold": 153.0,
+      "NegPredPct_before_clip": 0.0,
+      "MAE_vs_Naive_pct": 0.0
+    },
+    {
+      "Model": "Random Forest (log-target)",
+      "Window": "2020-2022",
+      "Hyperparameters": "60 trees, depth=8, leaf=5, max_features=.7, max_samples=.8",
+      "MAE": 40.04386889414724,
+      "RMSE": 145.03724437748122,
+      "R2": 0.8103028867289496,
+      "Peak_MAE": 304.3204594837477,
+      "Peak_Threshold": 153.0,
+      "NegPredPct_before_clip": 0.0,
+      "MAE_vs_Naive_pct": 40.8911875172395
+    },
+    {
+      "Model": "Ridge Regression",
+      "Window": "2022",
+      "Hyperparameters": "alpha=40000",
+      "MAE": 47.718879797984336,
+      "RMSE": 160.93882698133476,
+      "R2": 0.7664266414027227,
+      "Peak_MAE": 292.3936671452003,
+      "Peak_Threshold": 153.0,
+      "NegPredPct_before_clip": 31.450884213243835,
+      "MAE_vs_Naive_pct": 67.89510672663982
+    },
+    {
+      "Model": "Linear Regression",
+      "Window": "2021-2022",
+      "Hyperparameters": "county OHE + standardize",
+      "MAE": 63.62651477940789,
+      "RMSE": 189.97666628198184,
+      "R2": 0.674536592422353,
+      "Peak_MAE": 327.10471416744105,
+      "Peak_Threshold": 153.0,
+      "NegPredPct_before_clip": 3.51749064153866,
+      "MAE_vs_Naive_pct": 123.86486302186941
+    }
+  ],
+  "locked_configurations": {
+    "Linear Regression": {
+      "validation_window": "2021-2022",
+      "start": "2021-01-01 00:00:00",
+      "end": "2022-12-31 00:00:00",
+      "validation_MAE": 63.62651477940789
+    },
+    "Ridge Regression": {
+      "validation_window": "2022",
+      "start": "2022-01-01 00:00:00",
+      "end": "2022-12-31 00:00:00",
+      "alpha": 40000.0,
+      "validation_MAE": 47.718879797984336
+    },
+    "Random Forest (log-target)": {
+      "validation_window": "2020-2022",
+      "start": "2020-02-27 00:00:00",
+      "end": "2022-12-31 00:00:00",
+      "validation_MAE": 40.04386889414724
+    }
+  },
+  "final_test_results": [
+    {
+      "Model": "Naive 7-day persistence",
+      "Locked_Window": "N/A",
+      "MAE": 31.04575280362682,
+      "RMSE": 127.24997076014832,
+      "R2": 0.8504641181471677,
+      "Peak_MAE": 213.62373285629099,
+      "Peak_Threshold": 159.8000000000029,
+      "NegPredPct_before_clip": 0.0,
+      "MAE_vs_Naive_pct": 0.0
+    },
+    {
+      "Model": "Random Forest (log-target)",
+      "Locked_Window": "2020-2022",
+      "MAE": 34.37740535337549,
+      "RMSE": 138.00509212836883,
+      "R2": 0.8241184612662378,
+      "Peak_MAE": 262.3537954559896,
+      "Peak_Threshold": 159.8000000000029,
+      "NegPredPct_before_clip": 0.0,
+      "MAE_vs_Naive_pct": 10.731427808571148
+    },
+    {
+      "Model": "Ridge Regression",
+      "Locked_Window": "2022, alpha=40000",
+      "MAE": 43.46588797675095,
+      "RMSE": 162.6745565592489,
+      "R2": 0.7556179537646186,
+      "Peak_MAE": 289.67558142154536,
+      "Peak_Threshold": 159.8000000000029,
+      "NegPredPct_before_clip": 33.60773085182534,
+      "MAE_vs_Naive_pct": 40.005907576746495
+    },
+    {
+      "Model": "Linear Regression",
+      "Locked_Window": "2021-2022",
+      "MAE": 50.06941676797556,
+      "RMSE": 168.17177427895206,
+      "R2": 0.7388222079248626,
+      "Peak_MAE": 268.496052820221,
+      "Peak_Threshold": 159.8000000000029,
+      "NegPredPct_before_clip": 31.883798616082082,
+      "MAE_vs_Naive_pct": 61.27622056607487
+    }
+  ],
+  "best_ml_final_test": {
+    "Model": "Random Forest (log-target)",
+    "Locked_Window": "2020-2022",
+    "MAE": 34.37740535337549,
+    "RMSE": 138.00509212836883,
+    "R2": 0.8241184612662378,
+    "Peak_MAE": 262.3537954559896,
+    "Peak_Threshold": 159.8000000000029,
+    "NegPredPct_before_clip": 0.0,
+    "MAE_vs_Naive_pct": 10.731427808571148
+  },
+  "top_rf_impurity_features": [
+    {
+      "feature": "cases_roll_mean_7",
+      "importance": 0.6294849403981271
+    },
+    {
+      "feature": "cases_roll_mean_14",
+      "importance": 0.26553781666194315
+    },
+    {
+      "feature": "cases_roll_std_14",
+      "importance": 0.06056496355473428
+    },
+    {
+      "feature": "cases_roll_std_7",
+      "importance": 0.028521190362214854
+    },
+    {
+      "feature": "week_of_year",
+      "importance": 0.004082748154624667
+    },
+    {
+      "feature": "month_sin",
+      "importance": 0.0034120547488954846
+    },
+    {
+      "feature": "days_since_start",
+      "importance": 0.0025927856813810547
+    },
+    {
+      "feature": "deaths_roll_mean_14",
+      "importance": 0.0012254059300295743
+    },
+    {
+      "feature": "month_cos",
+      "importance": 0.0012253898499768419
+    },
+    {
+      "feature": "month",
+      "importance": 0.000637405254707088
+    }
+  ],
+  "top_rf_permutation_features_validation": [
+    {
+      "feature": "cases_roll_mean_7",
+      "MAE_increase_mean": 49.156847830542944,
+      "MAE_increase_std": 0.24119530411725995
+    },
+    {
+      "feature": "cases_roll_mean_14",
+      "MAE_increase_mean": 43.71821165714101,
+      "MAE_increase_std": 0.628832425039087
+    },
+    {
+      "feature": "cases_roll_std_14",
+      "MAE_increase_mean": 0.7519037779804284,
+      "MAE_increase_std": 0.4020910440197372
+    },
+    {
+      "feature": "week_of_year",
+      "MAE_increase_mean": 0.3431893358742097,
+      "MAE_increase_std": 0.14992883610608324
+    },
+    {
+      "feature": "deaths_roll_mean_14",
+      "MAE_increase_mean": 0.1071543506346823,
+      "MAE_increase_std": 0.046652614691727566
+    },
+    {
+      "feature": "cases_lag_7",
+      "MAE_increase_mean": 0.07629697474249753,
+      "MAE_increase_std": 0.005784189410431753
+    },
+    {
+      "feature": "current_new_cases",
+      "MAE_increase_mean": 0.05636533737065008,
+      "MAE_increase_std": 0.0078205780429278
+    },
+    {
+      "feature": "deaths_roll_mean_7",
+      "MAE_increase_mean": 0.022496371771097756,
+      "MAE_increase_std": 0.0064027381055728975
+    },
+    {
+      "feature": "is_weekend",
+      "MAE_increase_mean": 0.015945800541345534,
+      "MAE_increase_std": 0.01520627201724199
+    },
+    {
+      "feature": "dow_sin",
+      "MAE_increase_mean": 0.013687300815855489,
+      "MAE_increase_std": 0.006209706318344197
+    }
+  ]
+}

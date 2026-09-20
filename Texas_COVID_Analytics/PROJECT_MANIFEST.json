@@ -1,0 +1,219 @@
+{
+  "project": "Texas_COVID_Analytics",
+  "entrypoints": {
+    "data_understanding": "notebooks/01_Data_Understanding_NYT_COVID.ipynb",
+    "pipeline": "run_pipeline.py",
+    "streamlit": "app.py"
+  },
+  "syntax_errors": [],
+  "files": [
+    {
+      "path": ".github/workflows/refresh_pipeline.yml",
+      "size_bytes": 1374
+    },
+    {
+      "path": ".gitignore",
+      "size_bytes": 392
+    },
+    {
+      "path": ".streamlit/config.toml",
+      "size_bytes": 49
+    },
+    {
+      "path": "README.md",
+      "size_bytes": 5232
+    },
+    {
+      "path": "START_HERE.md",
+      "size_bytes": 1340
+    },
+    {
+      "path": "__pycache__/app.cpython-313.pyc",
+      "size_bytes": 9777
+    },
+    {
+      "path": "__pycache__/run_pipeline.cpython-313.pyc",
+      "size_bytes": 1672
+    },
+    {
+      "path": "app.py",
+      "size_bytes": 8609
+    },
+    {
+      "path": "dashboard_data/best_validation_config_by_algorithm.csv",
+      "size_bytes": 760
+    },
+    {
+      "path": "dashboard_data/county_level_test_errors.csv",
+      "size_bytes": 21421
+    },
+    {
+      "path": "dashboard_data/final_test_model_comparison.csv",
+      "size_bytes": 700
+    },
+    {
+      "path": "dashboard_data/final_test_predictions.csv",
+      "size_bytes": 1287573
+    },
+    {
+      "path": "dashboard_data/random_forest_feature_importance.csv",
+      "size_bytes": 973
+    },
+    {
+      "path": "dashboard_data/rf_permutation_importance_validation.csv",
+      "size_bytes": 1537
+    },
+    {
+      "path": "dashboard_data/statewide_test_predictions_by_date.csv",
+      "size_bytes": 5505
+    },
+    {
+      "path": "data/processed/.gitkeep",
+      "size_bytes": 0
+    },
+    {
+      "path": "data/raw/.gitkeep",
+      "size_bytes": 0
+    },
+    {
+      "path": "docs/PIPELINE.md",
+      "size_bytes": 1443
+    },
+    {
+      "path": "docs/RESULTS.md",
+      "size_bytes": 1769
+    },
+    {
+      "path": "models/.gitkeep",
+      "size_bytes": 0
+    },
+    {
+      "path": "notebooks/01_Data_Understanding_NYT_COVID.ipynb",
+      "size_bytes": 1853411
+    },
+    {
+      "path": "reports/figures/01_preprocess_extreme_flags_vs_activity.png",
+      "size_bytes": 151441
+    },
+    {
+      "path": "reports/figures/02_preprocess_split_sizes.png",
+      "size_bytes": 52327
+    },
+    {
+      "path": "reports/figures/03_validation_mae_comparison.png",
+      "size_bytes": 43077
+    },
+    {
+      "path": "reports/figures/04_final_test_mae_comparison.png",
+      "size_bytes": 43143
+    },
+    {
+      "path": "reports/figures/05_statewide_actual_vs_prediction.png",
+      "size_bytes": 135800
+    },
+    {
+      "path": "reports/figures/06_rf_impurity_feature_importance.png",
+      "size_bytes": 66513
+    },
+    {
+      "path": "reports/figures/07_rf_permutation_importance.png",
+      "size_bytes": 81714
+    },
+    {
+      "path": "reports/tables/best_validation_config_by_algorithm.csv",
+      "size_bytes": 760
+    },
+    {
+      "path": "reports/tables/correction_audit_final.csv",
+      "size_bytes": 5687
+    },
+    {
+      "path": "reports/tables/correction_impact_audit_final.csv",
+      "size_bytes": 13564
+    },
+    {
+      "path": "reports/tables/county_level_test_errors.csv",
+      "size_bytes": 21421
+    },
+    {
+      "path": "reports/tables/feature_manifest_final.csv",
+      "size_bytes": 1969
+    },
+    {
+      "path": "reports/tables/final_test_model_comparison.csv",
+      "size_bytes": 700
+    },
+    {
+      "path": "reports/tables/final_test_predictions.csv",
+      "size_bytes": 1287573
+    },
+    {
+      "path": "reports/tables/outlier_diagnostic_by_county_final.csv",
+      "size_bytes": 11451
+    },
+    {
+      "path": "reports/tables/random_forest_feature_importance.csv",
+      "size_bytes": 973
+    },
+    {
+      "path": "reports/tables/rf_permutation_importance_validation.csv",
+      "size_bytes": 1537
+    },
+    {
+      "path": "reports/tables/ridge_standardized_coefficients.csv",
+      "size_bytes": 17364
+    },
+    {
+      "path": "reports/tables/split_summary_final.csv",
+      "size_bytes": 264
+    },
+    {
+      "path": "reports/tables/statewide_test_predictions_by_date.csv",
+      "size_bytes": 5505
+    },
+    {
+      "path": "reports/tables/validation_model_comparison.csv",
+      "size_bytes": 1596
+    },
+    {
+      "path": "requirements.txt",
+      "size_bytes": 155
+    },
+    {
+      "path": "run_pipeline.py",
+      "size_bytes": 1222
+    },
+    {
+      "path": "src/__init__.py",
+      "size_bytes": 38
+    },
+    {
+      "path": "src/__pycache__/__init__.cpython-313.pyc",
+      "size_bytes": 190
+    },
+    {
+      "path": "src/__pycache__/config.cpython-313.pyc",
+      "size_bytes": 1803
+    },
+    {
+      "path": "src/__pycache__/preprocess.cpython-313.pyc",
+      "size_bytes": 23585
+    },
+    {
+      "path": "src/__pycache__/train.cpython-313.pyc",
+      "size_bytes": 25628
+    },
+    {
+      "path": "src/config.py",
+      "size_bytes": 1175
+    },
+    {
+      "path": "src/preprocess.py",
+      "size_bytes": 22226
+    },
+    {
+      "path": "src/train.py",
+      "size_bytes": 29417
+    }
+  ]
+}
