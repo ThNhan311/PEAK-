@@ -33,6 +33,7 @@ from .config import (
     PROCESSED_DIR,
     RANDOM_STATE,
     TABLES_DIR,
+    VALIDATION_END,
 )
 
 
@@ -530,9 +531,9 @@ def run_training() -> dict:
             master["date"].min(),
     }
 
-    final_train_end = pd.Timestamp(
-        "2022-12-31"
-    )
+    # Refit on train + validation only through the last forecast
+    # origin whose seven-day target ends before Final Test.
+    final_train_end = VALIDATION_END
 
     linear_best = best_row_for(
         best_by_algorithm,
@@ -1160,6 +1161,36 @@ def run_training() -> dict:
         index=False,
     )
 
+    coefficient_plot = pd.concat([
+        ridge_coefficients.nlargest(6, "coefficient"),
+        ridge_coefficients.nsmallest(6, "coefficient"),
+    ]).sort_values("coefficient")
+
+    fig, ax = plt.subplots(figsize=(9, 6))
+    colors = [
+        "#D9902F" if value < 0 else "#233B78"
+        for value in coefficient_plot["coefficient"]
+    ]
+    ax.barh(
+        coefficient_plot["feature"],
+        coefficient_plot["coefficient"],
+        color=colors,
+    )
+    ax.axvline(0, color="black", linewidth=0.8)
+    ax.set_xlabel("Standardized Ridge coefficient")
+    ax.set_ylabel("Feature")
+    ax.set_title(
+        "Largest positive and negative Ridge coefficients"
+    )
+    fig.tight_layout()
+    fig.savefig(
+        FIGURES_DIR
+        / "12_ridge_standardized_coefficients.png",
+        dpi=180,
+        bbox_inches="tight",
+    )
+    plt.close(fig)
+
     # County-level errors.
     county_rows = []
 
@@ -1209,6 +1240,197 @@ def run_training() -> dict:
         / "county_level_test_errors.csv",
         index=False,
     )
+
+    # Scatter plot: actual versus Random Forest prediction.
+    scatter_sample = predictions.sample(
+        n=min(2500, len(predictions)),
+        random_state=RANDOM_STATE,
+    )
+    scatter_limit = float(max(
+        scatter_sample["actual_target"].max(),
+        scatter_sample["pred_rf"].max(),
+    ))
+
+    fig, ax = plt.subplots(figsize=(7, 6))
+    ax.scatter(
+        scatter_sample["actual_target"],
+        scatter_sample["pred_rf"],
+        alpha=0.32,
+        s=16,
+    )
+    ax.plot(
+        [0, scatter_limit],
+        [0, scatter_limit],
+        linestyle="--",
+        color="darkorange",
+        label="Ideal prediction",
+    )
+    ax.set_title(
+        "Random Forest: actual versus predicted values"
+    )
+    ax.set_xlabel("Actual next-7-day cases")
+    ax.set_ylabel("Predicted next-7-day cases")
+    ax.legend()
+    fig.tight_layout()
+    fig.savefig(
+        FIGURES_DIR
+        / "08_rf_actual_vs_predicted_scatter.png",
+        dpi=180,
+        bbox_inches="tight",
+    )
+    plt.close(fig)
+
+    # Boxplot: distribution of county-level MAE by model.
+    box_columns = [
+        "MAE_Naive",
+        "MAE_RF",
+        "MAE_Ridge",
+        "MAE_Linear",
+    ]
+    box_labels = [
+        "Naive",
+        "Random Forest",
+        "Ridge",
+        "Linear",
+    ]
+
+    fig, ax = plt.subplots(figsize=(8, 5.5))
+    ax.boxplot(
+        [
+            county_errors[column].to_numpy()
+            for column in box_columns
+        ],
+        labels=box_labels,
+        patch_artist=True,
+    )
+    ax.set_yscale("log")
+    ax.set_title(
+        "County-level MAE distribution on Final Test"
+    )
+    ax.set_xlabel("Model")
+    ax.set_ylabel("County MAE (log scale)")
+    fig.tight_layout()
+    fig.savefig(
+        FIGURES_DIR / "09_county_mae_boxplot.png",
+        dpi=180,
+        bbox_inches="tight",
+    )
+    plt.close(fig)
+
+    # Histogram: signed Random Forest residuals.
+    rf_residual = (
+        predictions["actual_target"]
+        - predictions["pred_rf"]
+    )
+    central_limit = float(
+        np.quantile(np.abs(rf_residual), 0.99)
+    )
+
+    fig, ax = plt.subplots(figsize=(8.5, 5.5))
+    ax.hist(
+        rf_residual.clip(
+            -central_limit,
+            central_limit,
+        ),
+        bins=45,
+        color="#2878B5",
+        edgecolor="white",
+    )
+    ax.axvline(
+        0,
+        color="black",
+        linestyle="--",
+        label="Zero error",
+    )
+    ax.set_title(
+        "Distribution of Random Forest residuals"
+    )
+    ax.set_xlabel("Actual minus predicted cases")
+    ax.set_ylabel("Number of county-date observations")
+    ax.legend()
+    fig.tight_layout()
+    fig.savefig(
+        FIGURES_DIR / "10_rf_residual_histogram.png",
+        dpi=180,
+        bbox_inches="tight",
+    )
+    plt.close(fig)
+
+    # Heatmap: model MAE by calendar month in Final Test.
+    monthly = predictions.assign(
+        month=(
+            predictions["date"]
+            .dt.to_period("M")
+            .astype(str)
+        )
+    )
+    prediction_columns = {
+        "Naive": "pred_naive",
+        "Random Forest": "pred_rf",
+        "Ridge": "pred_ridge",
+        "Linear": "pred_linear",
+    }
+    months = sorted(monthly["month"].unique())
+    heat_values = np.array([
+        [
+            mean_absolute_error(
+                monthly.loc[
+                    monthly["month"] == month,
+                    "actual_target",
+                ],
+                monthly.loc[
+                    monthly["month"] == month,
+                    column,
+                ],
+            )
+            for month in months
+        ]
+        for column in prediction_columns.values()
+    ])
+
+    fig, ax = plt.subplots(figsize=(8, 5.2))
+    image = ax.imshow(
+        heat_values,
+        cmap="YlOrRd",
+        aspect="auto",
+    )
+    ax.set_xticks(range(len(months)), labels=months)
+    ax.set_yticks(
+        range(len(prediction_columns)),
+        labels=list(prediction_columns.keys()),
+    )
+    ax.set_xlabel("Final Test month")
+    ax.set_ylabel("Model")
+    ax.set_title("Monthly MAE heatmap on Final Test")
+
+    for row in range(heat_values.shape[0]):
+        for column in range(heat_values.shape[1]):
+            value = heat_values[row, column]
+            ax.text(
+                column,
+                row,
+                f"{value:.1f}",
+                ha="center",
+                va="center",
+                color=(
+                    "white"
+                    if value > heat_values.mean()
+                    else "black"
+                ),
+            )
+
+    fig.colorbar(
+        image,
+        ax=ax,
+        label="MAE (cases per 7 days)",
+    )
+    fig.tight_layout()
+    fig.savefig(
+        FIGURES_DIR / "11_monthly_mae_heatmap.png",
+        dpi=180,
+        bbox_inches="tight",
+    )
+    plt.close(fig)
 
     # Save models.
     joblib.dump(

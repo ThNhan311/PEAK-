@@ -4,11 +4,11 @@
     "Model": "Naive 7-day persistence",
     "Window": "N/A",
     "Hyperparameters": "past_7d_sum",
-    "MAE": 28.421840712533886,
-    "RMSE": 112.19096360422394,
-    "R2": 0.8864943712529929,
-    "Peak_MAE": 193.35805626598466,
-    "Peak_Threshold": 153.0,
+    "MAE": 27.41681248177311,
+    "RMSE": 107.84259974438076,
+    "R2": 0.8764954006009481,
+    "Peak_MAE": 187.57745454545454,
+    "Peak_Threshold": 145.0,
     "NegPredPct_before_clip": 0.0,
     "MAE_vs_Naive_pct": 0.0
   },
@@ -17,11 +17,11 @@
       "Model": "Naive 7-day persistence",
       "Window": "N/A",
       "Hyperparameters": "past_7d_sum",
-      "MAE": 28.421840712533886,
-      "RMSE": 112.19096360422394,
-      "R2": 0.8864943712529929,
-      "Peak_MAE": 193.35805626598466,
-      "Peak_Threshold": 153.0,
+      "MAE": 27.41681248177311,
+      "RMSE": 107.84259974438076,
+      "R2": 0.8764954006009481,
+      "Peak_MAE": 187.57745454545454,
+      "Peak_Threshold": 145.0,
       "NegPredPct_before_clip": 0.0,
       "MAE_vs_Naive_pct": 0.0
     },
@@ -29,58 +29,58 @@
       "Model": "Random Forest (log-target)",
       "Window": "2020-2022",
       "Hyperparameters": "60 trees, depth=8, leaf=5, max_features=.7, max_samples=.8",
-      "MAE": 40.04386889414724,
-      "RMSE": 145.03724437748122,
-      "R2": 0.8103028867289496,
-      "Peak_MAE": 304.3204594837477,
-      "Peak_Threshold": 153.0,
+      "MAE": 37.77231568894976,
+      "RMSE": 139.9750171446314,
+      "R2": 0.791932862446758,
+      "Peak_MAE": 288.84996052975697,
+      "Peak_Threshold": 145.0,
       "NegPredPct_before_clip": 0.0,
-      "MAE_vs_Naive_pct": 40.8911875172395
+      "MAE_vs_Naive_pct": 37.770631484097805
     },
     {
       "Model": "Ridge Regression",
       "Window": "2022",
-      "Hyperparameters": "alpha=40000",
-      "MAE": 47.718879797984336,
-      "RMSE": 160.93882698133476,
-      "R2": 0.7664266414027227,
-      "Peak_MAE": 292.3936671452003,
-      "Peak_Threshold": 153.0,
-      "NegPredPct_before_clip": 31.450884213243835,
-      "MAE_vs_Naive_pct": 67.89510672663982
+      "Hyperparameters": "alpha=30000",
+      "MAE": 45.800947187822636,
+      "RMSE": 156.24439825955545,
+      "R2": 0.7407544291338741,
+      "Peak_MAE": 286.0617046772207,
+      "Peak_Threshold": 145.0,
+      "NegPredPct_before_clip": 42.526975794692326,
+      "MAE_vs_Naive_pct": 67.05423804562048
     },
     {
       "Model": "Linear Regression",
       "Window": "2021-2022",
       "Hyperparameters": "county OHE + standardize",
-      "MAE": 63.62651477940789,
-      "RMSE": 189.97666628198184,
-      "R2": 0.674536592422353,
-      "Peak_MAE": 327.10471416744105,
-      "Peak_Threshold": 153.0,
-      "NegPredPct_before_clip": 3.51749064153866,
-      "MAE_vs_Naive_pct": 123.86486302186941
+      "MAE": 68.60572244212628,
+      "RMSE": 196.4916180777592,
+      "R2": 0.5899937360555922,
+      "Peak_MAE": 336.7495811502097,
+      "Peak_Threshold": 145.0,
+      "NegPredPct_before_clip": 2.456984543598717,
+      "MAE_vs_Naive_pct": 150.23230723022905
     }
   ],
   "locked_configurations": {
     "Linear Regression": {
       "validation_window": "2021-2022",
       "start": "2021-01-01 00:00:00",
-      "end": "2022-12-31 00:00:00",
-      "validation_MAE": 63.62651477940789
+      "end": "2022-12-24 00:00:00",
+      "validation_MAE": 68.60572244212628
     },
     "Ridge Regression": {
       "validation_window": "2022",
       "start": "2022-01-01 00:00:00",
-      "end": "2022-12-31 00:00:00",
-      "alpha": 40000.0,
-      "validation_MAE": 47.718879797984336
+      "end": "2022-12-24 00:00:00",
+      "alpha": 30000.0,
+      "validation_MAE": 45.800947187822636
     },
     "Random Forest (log-target)": {
       "validation_window": "2020-2022",
       "start": "2020-02-27 00:00:00",
-      "end": "2022-12-31 00:00:00",
-      "validation_MAE": 40.04386889414724
+      "end": "2022-12-24 00:00:00",
+      "validation_MAE": 37.77231568894976
     }
   },
   "final_test_results": [
@@ -98,140 +98,140 @@
     {
       "Model": "Random Forest (log-target)",
       "Locked_Window": "2020-2022",
-      "MAE": 34.37740535337549,
-      "RMSE": 138.00509212836883,
-      "R2": 0.8241184612662378,
-      "Peak_MAE": 262.3537954559896,
+      "MAE": 35.01359791277463,
+      "RMSE": 136.72051942825112,
+      "R2": 0.8273774876076334,
+      "Peak_MAE": 269.04291253156407,
       "Peak_Threshold": 159.8000000000029,
       "NegPredPct_before_clip": 0.0,
-      "MAE_vs_Naive_pct": 10.731427808571148
+      "MAE_vs_Naive_pct": 12.780637449011323
     },
     {
       "Model": "Ridge Regression",
-      "Locked_Window": "2022, alpha=40000",
-      "MAE": 43.46588797675095,
-      "RMSE": 162.6745565592489,
-      "R2": 0.7556179537646186,
-      "Peak_MAE": 289.67558142154536,
+      "Locked_Window": "2022, alpha=30000",
+      "MAE": 45.42124696361291,
+      "RMSE": 164.9892562080737,
+      "R2": 0.748613840507788,
+      "Peak_MAE": 299.4955172094182,
       "Peak_Threshold": 159.8000000000029,
-      "NegPredPct_before_clip": 33.60773085182534,
-      "MAE_vs_Naive_pct": 40.005907576746495
+      "NegPredPct_before_clip": 67.20949654020521,
+      "MAE_vs_Naive_pct": 46.30422154977256
     },
     {
       "Model": "Linear Regression",
       "Locked_Window": "2021-2022",
-      "MAE": 50.06941676797556,
-      "RMSE": 168.17177427895206,
-      "R2": 0.7388222079248626,
-      "Peak_MAE": 268.496052820221,
+      "MAE": 49.838611504850704,
+      "RMSE": 167.8378816991507,
+      "R2": 0.7398582766385737,
+      "Peak_MAE": 267.2341072710636,
       "Peak_Threshold": 159.8000000000029,
-      "NegPredPct_before_clip": 31.883798616082082,
-      "MAE_vs_Naive_pct": 61.27622056607487
+      "NegPredPct_before_clip": 32.33715103793844,
+      "MAE_vs_Naive_pct": 60.53278469391301
     }
   ],
   "best_ml_final_test": {
     "Model": "Random Forest (log-target)",
     "Locked_Window": "2020-2022",
-    "MAE": 34.37740535337549,
-    "RMSE": 138.00509212836883,
-    "R2": 0.8241184612662378,
-    "Peak_MAE": 262.3537954559896,
+    "MAE": 35.01359791277463,
+    "RMSE": 136.72051942825112,
+    "R2": 0.8273774876076334,
+    "Peak_MAE": 269.04291253156407,
     "Peak_Threshold": 159.8000000000029,
     "NegPredPct_before_clip": 0.0,
-    "MAE_vs_Naive_pct": 10.731427808571148
+    "MAE_vs_Naive_pct": 12.780637449011323
   },
   "top_rf_impurity_features": [
     {
       "feature": "cases_roll_mean_7",
-      "importance": 0.6294849403981271
+      "importance": 0.6086539393229684
     },
     {
       "feature": "cases_roll_mean_14",
-      "importance": 0.26553781666194315
+      "importance": 0.27897905855287897
     },
     {
       "feature": "cases_roll_std_14",
-      "importance": 0.06056496355473428
+      "importance": 0.0677607950683084
     },
     {
       "feature": "cases_roll_std_7",
-      "importance": 0.028521190362214854
+      "importance": 0.028136487659219774
     },
     {
       "feature": "week_of_year",
-      "importance": 0.004082748154624667
+      "importance": 0.004313934643616447
     },
     {
       "feature": "month_sin",
-      "importance": 0.0034120547488954846
+      "importance": 0.003308096952799498
     },
     {
       "feature": "days_since_start",
-      "importance": 0.0025927856813810547
+      "importance": 0.0026195780877902287
     },
     {
       "feature": "deaths_roll_mean_14",
-      "importance": 0.0012254059300295743
+      "importance": 0.0013262468573145639
     },
     {
       "feature": "month_cos",
-      "importance": 0.0012253898499768419
+      "importance": 0.0012251792611068279
     },
     {
-      "feature": "month",
-      "importance": 0.000637405254707088
+      "feature": "current_new_cases",
+      "importance": 0.0007167899145786374
     }
   ],
   "top_rf_permutation_features_validation": [
     {
       "feature": "cases_roll_mean_7",
-      "MAE_increase_mean": 49.156847830542944,
-      "MAE_increase_std": 0.24119530411725995
+      "MAE_increase_mean": 41.625582365999264,
+      "MAE_increase_std": 0.20689043771816715
     },
     {
       "feature": "cases_roll_mean_14",
-      "MAE_increase_mean": 43.71821165714101,
-      "MAE_increase_std": 0.628832425039087
+      "MAE_increase_mean": 36.15235395613608,
+      "MAE_increase_std": 0.22256611837153273
     },
     {
       "feature": "cases_roll_std_14",
-      "MAE_increase_mean": 0.7519037779804284,
-      "MAE_increase_std": 0.4020910440197372
-    },
-    {
-      "feature": "week_of_year",
-      "MAE_increase_mean": 0.3431893358742097,
-      "MAE_increase_std": 0.14992883610608324
+      "MAE_increase_mean": 0.8799154985752556,
+      "MAE_increase_std": 0.2816126143533551
     },
     {
       "feature": "deaths_roll_mean_14",
-      "MAE_increase_mean": 0.1071543506346823,
-      "MAE_increase_std": 0.046652614691727566
+      "MAE_increase_mean": 0.3197106359819581,
+      "MAE_increase_std": 0.03180616808237563
     },
     {
-      "feature": "cases_lag_7",
-      "MAE_increase_mean": 0.07629697474249753,
-      "MAE_increase_std": 0.005784189410431753
+      "feature": "week_of_year",
+      "MAE_increase_mean": 0.25561912294257877,
+      "MAE_increase_std": 0.07074623091829647
     },
     {
       "feature": "current_new_cases",
-      "MAE_increase_mean": 0.05636533737065008,
-      "MAE_increase_std": 0.0078205780429278
+      "MAE_increase_mean": 0.13294403148704484,
+      "MAE_increase_std": 0.0061882527974482715
     },
     {
-      "feature": "deaths_roll_mean_7",
-      "MAE_increase_mean": 0.022496371771097756,
-      "MAE_increase_std": 0.0064027381055728975
+      "feature": "cases_lag_7",
+      "MAE_increase_mean": 0.03724004538671011,
+      "MAE_increase_std": 0.00249138624995906
     },
     {
-      "feature": "is_weekend",
-      "MAE_increase_mean": 0.015945800541345534,
-      "MAE_increase_std": 0.01520627201724199
+      "feature": "cases_lag_3",
+      "MAE_increase_mean": 0.0314291492417856,
+      "MAE_increase_std": 0.0036633885771131637
     },
     {
       "feature": "dow_sin",
-      "MAE_increase_mean": 0.013687300815855489,
-      "MAE_increase_std": 0.006209706318344197
+      "MAE_increase_mean": 0.009973043388965172,
+      "MAE_increase_std": 0.002750787812263888
+    },
+    {
+      "feature": "day_of_week",
+      "MAE_increase_mean": 0.0010017553805070634,
+      "MAE_increase_std": 0.002127689466335629
     }
   ]
 }

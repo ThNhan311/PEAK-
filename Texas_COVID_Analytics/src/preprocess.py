@@ -440,6 +440,13 @@ def run_preprocessing(download: bool = True) -> dict:
         )
     )
 
+    # Last calendar day used by this forecast target. Splits use
+    # this key to prevent targets from crossing period boundaries.
+    df_feat["target_end_date"] = (
+        df_feat["date"]
+        + pd.Timedelta(days=FORECAST_HORIZON)
+    )
+
     df_feat.drop(
         columns=(
             future_case_cols
@@ -556,24 +563,24 @@ def run_preprocessing(download: bool = True) -> dict:
         )
 
     # Temporal split.
-    validation_mask = df_model["date"].between(
-        VALIDATION_START,
-        VALIDATION_END,
+    validation_mask = (
+        (df_model["date"] >= VALIDATION_START)
+        & (df_model["target_end_date"] < TEST_START)
     )
     test_mask = df_model["date"].between(
         TEST_START,
         TEST_END,
     )
-    train_2022_mask = df_model["date"].between(
-        TRAIN_START_2022,
-        TRAIN_COMMON_END,
+    train_2022_mask = (
+        (df_model["date"] >= TRAIN_START_2022)
+        & (df_model["target_end_date"] < VALIDATION_START)
     )
-    train_2021_2022_mask = df_model["date"].between(
-        TRAIN_START_2021,
-        TRAIN_COMMON_END,
+    train_2021_2022_mask = (
+        (df_model["date"] >= TRAIN_START_2021)
+        & (df_model["target_end_date"] < VALIDATION_START)
     )
     train_2020_2022_mask = (
-        df_model["date"] <= TRAIN_COMMON_END
+        df_model["target_end_date"] < VALIDATION_START
     )
 
     split_summary = pd.DataFrame({
@@ -666,6 +673,28 @@ def run_preprocessing(download: bool = True) -> dict:
     ).any():
         raise AssertionError(
             "Validation/test overlap."
+        )
+
+    if (
+        df_model.loc[
+            train_2020_2022_mask,
+            "target_end_date",
+        ].max()
+        >= VALIDATION_START
+    ):
+        raise AssertionError(
+            "Train target crosses into validation."
+        )
+
+    if (
+        df_model.loc[
+            validation_mask,
+            "target_end_date",
+        ].max()
+        >= TEST_START
+    ):
+        raise AssertionError(
+            "Validation target crosses into test."
         )
 
     if (df_model[TARGET_COL] < 0).any():

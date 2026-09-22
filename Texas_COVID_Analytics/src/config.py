@@ -37,11 +37,20 @@ FORECAST_HORIZON = 7
 LAGS = [1, 2, 3, 7, 14]
 ROLL_WINDOWS = [7, 14]
 
-TRAIN_COMMON_END = pd.Timestamp("2022-10-31")
 VALIDATION_START = pd.Timestamp("2022-11-01")
-VALIDATION_END = pd.Timestamp("2022-12-31")
 TEST_START = pd.Timestamp("2023-01-01")
 TEST_END = pd.Timestamp("2023-03-07")
+
+# A forecast origin t uses outcomes from t+1 through t+7.
+# Purge the last seven origins before each evaluation boundary.
+TRAIN_COMMON_END = (
+    VALIDATION_START
+    - pd.Timedelta(days=FORECAST_HORIZON + 1)
+)
+VALIDATION_END = (
+    TEST_START
+    - pd.Timedelta(days=FORECAST_HORIZON + 1)
+)
 
 TRAIN_START_2022 = pd.Timestamp("2022-01-01")
 TRAIN_START_2021 = pd.Timestamp("2021-01-01")
